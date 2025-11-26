@@ -10,32 +10,26 @@ const animalitos = [
   "patito",
 ];
 
+const compinches = [
+  "Axel",
+  "Trillo",
+  "Oliver",
+  "Valentina",
+  "David",
+  "Guillermo",
+  "Alexander",
+  "Nicolas",
+  "Noemy",
+];
+
 const animalListElement = document.querySelector("section > ul");
+const compinchesListElement = document.querySelector("section > div > ul");
 
-console.log(animalListElement);
-
-for (let index = 0; index < animalitos.length; index++) {
-  animalListElement.innerHTML += `<li>${animalitos[index]}</li>`;
+function renderArrayElements(array, element) {
+  for (let index = 0; index < array.length; index++) {
+    element.innerHTML += `<li>${array[index]}</li>`;
+  }
 }
 
-animalListElement.innerHTML += "<li>-----------------</li>";
-
-for (const animalito of animalitos) {
-  animalListElement.innerHTML += `<li>${animalito}</li>`;
-}
-
-console.log("Terminó a ejecuciónn");
-
-const array = [
-  ["Juan", 19, "masculino"],
-  ["Maria", 24, "femenino"],
-];
-
-const maria = array[1][1];
-
-const personas = [
-  { nombre: "juan", edad: 19, sexo: "masculino" },
-  { nombre: "maria", edad: 24, sexo: "femenino" },
-];
-
-console.log(personas[0]);
+renderArrayElements(compinches, compinchesListElement);
+renderArrayElements(animalitos, animalListElement);
