@@ -1,5 +1,5 @@
-const lists = {
-  animalitos: {
+const lists = [
+  {
     sectionName: "Mis animalitos",
     list: [
       "gatito",
@@ -13,7 +13,7 @@ const lists = {
       "patito",
     ],
   },
-  compinches: {
+  {
     sectionName: "Mis compinches",
     list: [
       "Axel",
@@ -27,36 +27,70 @@ const lists = {
       "Noemy",
     ],
   },
-};
+  {
+    sectionName: "Mis hobbies",
+    list: ["Escuchar música", "Trotar", "Programar"],
+  },
+];
 
-const animalListElement = document.querySelector("section > ul");
-const compinchesListElement = document.querySelector("section > div > ul");
-const listElements = document.querySelectorAll("ul");
+const formatId = (text) => text.replace(" ", "-").toLocaleLowerCase();
 
-listElements.forEach((el) => {
-  el.addEventListener("click", (e) => {
-    const element = e.target.id;
-    removeElement(element);
-    e.target.remove();
+lists.forEach((el) => {
+  document.body.innerHTML += `
+    <section>
+      <header>
+        <h1>${el.sectionName}</h1>
+      </header>
+      <ul id=${formatId(el.sectionName)}>
+      </ul>
+    </section>
+  `;
+});
+
+lists.forEach((el) => {
+  const listElement = document.getElementById(formatId(el.sectionName));
+
+  el.list.forEach((el) => {
+    listElement.innerHTML += `<li>${el}</li>`;
   });
 });
 
-console.log(listElements);
+// refactorizar:
+// la linea 53-55 hace lo mismo que la linea 38-47
+// necesitamos una función que reemplace el comportamiento de ambos para seguir el principio DRY (don't repeat yourself)
 
-function renderArrayElements(array, idArray, HTMLElement) {
-  for (let index = 0; index < array.length; index++) {
-    HTMLElement.innerHTML += `<li id=${idArray}-${array[index]}>${array[index]}</li>`;
-  }
-}
 
-function removeElement(element) {
-  const splittedElement = element.split("-");
-  const idArray = splittedElement[0];
-  const value = splittedElement[1];
 
-  const elementFound = lists[idArray].indexOf(value);
-  lists[idArray].splice(elementFound, 1);
-}
 
-renderArrayElements(lists.animalitos, "animalitos", animalListElement);
-renderArrayElements(lists.compinches, "compinches", compinchesListElement);
+
+// const animalListElement = document.querySelector("section > ul");
+// const compinchesListElement = document.querySelector("section > div > ul");
+// const listElements = document.querySelectorAll("ul");
+
+// listElements.forEach((el) => {
+//   el.addEventListener("click", (e) => {
+//     const element = e.target.id;
+//     removeElement(element);
+//     e.target.remove();
+//   });
+// });
+
+// console.log(listElements);
+
+// function renderArrayElements(array, idArray, HTMLElement) {
+//   for (let index = 0; index < array.length; index++) {
+//     HTMLElement.innerHTML += `<li id=${idArray}-${array[index]}>${array[index]}</li>`;
+//   }
+// }
+
+// function removeElement(element) {
+//   const splittedElement = element.split("-");
+//   const idArray = splittedElement[0];
+//   const value = splittedElement[1];
+
+//   const elementFound = lists[idArray].indexOf(value);
+//   lists[idArray].splice(elementFound, 1);
+// }
+
+// renderArrayElements(lists.animalitos, "animalitos", animalListElement);
+// renderArrayElements(lists.compinches, "compinches", compinchesListElement);
