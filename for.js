@@ -35,33 +35,33 @@ const lists = [
 
 const formatId = (text) => text.replace(" ", "-").toLocaleLowerCase();
 
-lists.forEach((el) => {
-  document.body.innerHTML += `
-    <section>
-      <header>
-        <h1>${el.sectionName}</h1>
-      </header>
-      <ul id=${formatId(el.sectionName)}>
-      </ul>
-    </section>
-  `;
-});
+const htmlRender = (array, htmlElement, htmlToRender) => {
+  array.forEach((el) => {
+    htmlElement.innerHTML += htmlToRender(el);
+  });
+};
+
+htmlRender(
+  lists,
+  document.body,
+  (el) => `<section>
+        <header>
+          <h1>${el.sectionName}</h1>
+        </header>
+        <ul id=${formatId(el.sectionName)}>
+        </ul>
+      </section>`
+);
 
 lists.forEach((el) => {
   const listElement = document.getElementById(formatId(el.sectionName));
 
-  el.list.forEach((el) => {
-    listElement.innerHTML += `<li>${el}</li>`;
-  });
+  htmlRender(el.list, listElement, (el) => `<li>${el}</li>`);
 });
 
 // refactorizar:
 // la linea 53-55 hace lo mismo que la linea 38-47
 // necesitamos una función que reemplace el comportamiento de ambos para seguir el principio DRY (don't repeat yourself)
-
-
-
-
 
 // const animalListElement = document.querySelector("section > ul");
 // const compinchesListElement = document.querySelector("section > div > ul");
