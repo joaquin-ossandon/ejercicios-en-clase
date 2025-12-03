@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pruebas</title>
+    <title>Ejercicio Producto - ver más</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -11,7 +11,27 @@
       crossorigin="anonymous"
     />
   </head>
-  <body data-bs-theme="dark">
+  <body>
+    <div class="container mt-5">
+      <div id="product-list" class="row row-cols-3 g-4">
+        <!-- Aqui van los productos -->
+      </div>
+    </div>
+
+    <dialog>
+      <div id="modal-info">
+        <!-- Esto se muestra dinámicamente -->
+      </div>
+      <form method="dialog">
+        <button>Cerrar</button>
+      </form>
+    </dialog>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
     <script src="./main.js"></script>
   </body>
 </html>
